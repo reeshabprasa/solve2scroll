@@ -1,0 +1,4 @@
+/* A stalled/disconnected guard must not leave any site content interactive. */
+html:not([data-solve2scroll-allowed]) {
+  display: none !important;
+}

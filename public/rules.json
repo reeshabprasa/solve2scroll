@@ -1,0 +1,26 @@
+[
+  {
+    "id": 1,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": { "extensionPath": "/blocked.html?site=instagram" }
+    },
+    "condition": {
+      "requestDomains": ["instagram.com"],
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  },
+  {
+    "id": 2,
+    "priority": 1,
+    "action": {
+      "type": "redirect",
+      "redirect": { "extensionPath": "/blocked.html?site=tiktok" }
+    },
+    "condition": {
+      "requestDomains": ["tiktok.com"],
+      "resourceTypes": ["main_frame", "sub_frame"]
+    }
+  }
+]

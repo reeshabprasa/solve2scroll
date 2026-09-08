@@ -1,0 +1,13 @@
+{
+  "status_code": 10,
+  "lang": "python3",
+  "run_success": true,
+  "question_id": "3",
+  "finished": true,
+  "total_correct": 1036,
+  "total_testcases": 1036,
+  "submission_id": "1000000001",
+  "status_msg": "Accepted",
+  "state": "SUCCESS",
+  "judger_status_code": 10
+}
