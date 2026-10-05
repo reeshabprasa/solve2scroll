@@ -4,8 +4,6 @@
 
 A local-first Chrome extension that puts Instagram and TikTok behind a shared screentime pool. Every new accepted Leetcode submission earns **10 minutes**, including new submissions to problems you have already solved (for spaced repetition). Minutes accumulate without a cap or expiration.
 
-![The Solve2Scroll blocked page](docs/images/blocked.png)
-
 ## Install
 
 The current source build awards **10 minutes** per solve. The published v0.1.0 ZIP still awards 20 minutes; use the development build instructions below for the updated reward. Existing saved minutes are preserved when updating.
