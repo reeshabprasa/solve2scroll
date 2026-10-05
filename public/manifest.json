@@ -3,7 +3,7 @@
   "name": "Solve2Scroll",
   "version": "0.1.0",
   "minimum_chrome_version": "120",
-  "description": "Solve a LeetCode. Earn 20 minutes of Instagram and TikTok. Make your scrolling intentional.",
+  "description": "Solve a LeetCode. Earn 10 minutes of Instagram and TikTok. Make your scrolling intentional.",
   "permissions": [
     "storage",
     "alarms",

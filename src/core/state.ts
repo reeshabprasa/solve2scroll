@@ -1,6 +1,8 @@
-export const REWARD_MS = 20 * 60 * 1000;
+export const REWARD_MINUTES = 10;
+export const REWARD_MS = REWARD_MINUTES * 60 * 1000;
 export const MAX_HEARTBEAT_GAP_MS = 5000;
 export interface Reward {
+  rewardMs?: number;
   id: string;
   slug: string;
   at: number;
@@ -68,12 +70,12 @@ export function credit(state: State, id: string, now: number): boolean {
   if (!pending || state.processed[id]) return false;
   state.processed[id] = true;
   state.balanceMs += REWARD_MS;
-  state.history = [{ id, slug: pending.slug, at: now }, ...state.history].slice(
-    0,
-    30,
-  );
+  state.history = [
+    { id, slug: pending.slug, at: now, rewardMs: REWARD_MS },
+    ...state.history,
+  ].slice(0, 30);
   delete state.pending[id];
-  state.status = "Accepted! 20 minutes added to your pool.";
+  state.status = `Accepted! ${REWARD_MINUTES} minutes added to your pool.`;
   return true;
 }
 export function registerSubmission(

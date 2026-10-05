@@ -8,6 +8,8 @@ A local-first Chrome extension that puts Instagram and TikTok behind a shared sc
 
 ## Install
 
+The current source build awards **10 minutes** per solve. The published v0.1.0 ZIP still awards 20 minutes; use the development build instructions below for the updated reward. Existing saved minutes are preserved when updating.
+
 1. Download **[solve2scroll-v0.1.0.zip](https://github.com/reeshabprasa/Solve2Scroll/releases/latest)** from the release assets (not GitHub’s source-code ZIP).
 2. Extract it into a permanent folder. Keep this folder: Chrome loads the extension from it.
 3. Open `chrome://extensions` in desktop Chrome and enable **Developer mode**.

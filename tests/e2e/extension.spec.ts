@@ -118,7 +118,7 @@ test("real extension pipeline credits new accepted submission but not run code o
   );
   expect(await balance()).toBe(0);
   await page.click("#submit");
-  await expect.poll(balance).toBe(1200000);
+  await expect.poll(balance).toBe(600000);
   await page.evaluate(() =>
     window.postMessage(
       {
@@ -131,21 +131,21 @@ test("real extension pipeline credits new accepted submission but not run code o
     ),
   );
   const popup = await openPopup();
-  await expect(popup.locator("#balance")).toHaveText("20:00");
+  await expect(popup.locator("#balance")).toHaveText("10:00");
   await expect(popup.locator("#history li")).toHaveCount(1);
 });
 test("stored pool survives worker restart and blocked page Continue unlocks", async () => {
   await fakeLeetCode().then((p) => p.click("#submit"));
-  await expect.poll(balance).toBe(1200000);
-  await seed(1200000);
+  await expect.poll(balance).toBe(600000);
+  await seed(600000);
   const page = await context.newPage();
   await page.goto(`chrome-extension://${extensionId}/blocked.html?site=tiktok`);
   await expect(page.locator("#continue")).toBeEnabled();
-  await expect(page.locator("#balance")).toHaveText("20:00");
+  await expect(page.locator("#balance")).toHaveText("10:00");
 });
 test("countdown charges a foreground social page and blocks it at exhaustion", async () => {
   await fakeLeetCode().then((p) => p.click("#submit"));
-  await expect.poll(balance).toBe(1200000);
+  await expect.poll(balance).toBe(600000);
   await seed(3000);
   await context.route("https://www.instagram.com/**", (route) =>
     route.fulfill({
@@ -161,7 +161,7 @@ test("countdown charges a foreground social page and blocks it at exhaustion", a
 });
 test("foreground time pauses on another tab and two social tabs do not double charge", async () => {
   await fakeLeetCode().then((p) => p.click("#submit"));
-  await expect.poll(balance).toBe(1200000);
+  await expect.poll(balance).toBe(600000);
   await context.route("https://www.instagram.com/**", (route) =>
     route.fulfill({
       contentType: "text/html",
@@ -179,7 +179,7 @@ test("foreground time pauses on another tab and two social tabs do not double ch
   const second = await context.newPage();
   await second.goto("https://www.tiktok.com/");
   await second.bringToFront();
-  await expect.poll(balance).toBeLessThan(1199000);
+  await expect.poll(balance).toBeLessThan(599000);
   const before = await balance();
   await second.waitForTimeout(2500);
   const spent = before - (await balance());
@@ -207,7 +207,7 @@ test("offline verification stays pending then retries without duplicate rewards"
   await expect(popup.locator("#retry")).toBeVisible();
   offline = false;
   await popup.click("#retry");
-  await expect.poll(balance).toBe(1200000);
+  await expect.poll(balance).toBe(600000);
   await expect(popup.locator("#history li")).toHaveCount(1);
 });
 test("wrong answer never unlocks social sites", async () => {
@@ -222,10 +222,10 @@ test("wrong answer never unlocks social sites", async () => {
   await expect(popup.locator("#status")).toContainText("not Accepted");
   expect(await balance()).toBe(0);
 });
-test("repeat solutions with different submission IDs each earn 20 minutes", async () => {
+test("repeat solutions with different submission IDs each earn 10 minutes", async () => {
   const page = await fakeLeetCode();
   await page.click("#submit");
-  await expect.poll(balance).toBe(1200000);
+  await expect.poll(balance).toBe(600000);
   await context.route(
     "https://leetcode.com/problems/two-sum/submit/",
     (route) => route.fulfill({ json: { submission_id: 1000000002 } }),
@@ -236,10 +236,10 @@ test("repeat solutions with different submission IDs each earn 20 minutes", asyn
       route.fulfill({ json: { ...accepted, submission_id: "1000000002" } }),
   );
   await page.click("#submit");
-  await expect.poll(balance).toBe(2400000);
+  await expect.poll(balance).toBe(1200000);
   await page.reload();
   const popup = await openPopup();
-  await expect(popup.locator("#balance")).toHaveText("40:00");
+  await expect(popup.locator("#balance")).toHaveText("20:00");
   await expect(popup.locator("#history li")).toHaveCount(2);
 });
 test("pages render without runtime or CSP errors", async () => {
@@ -273,7 +273,7 @@ test("social links from an unrelated website can reach the blocked page", async 
 
 test("balance survives a complete browser restart", async () => {
   await fakeLeetCode().then((p) => p.click("#submit"));
-  await expect.poll(balance).toBe(1200000);
+  await expect.poll(balance).toBe(600000);
   await context.close();
   context = await chromium.launchPersistentContext(profile, {
     channel: "chromium",
@@ -287,6 +287,6 @@ test("balance survives a complete browser restart", async () => {
     context.serviceWorkers()[0] ??
     (await context.waitForEvent("serviceworker"));
   const popup = await openPopup();
-  await expect(popup.locator("#balance")).toHaveText("20:00");
-  expect(await balance()).toBe(1200000);
+  await expect(popup.locator("#balance")).toHaveText("10:00");
+  expect(await balance()).toBe(600000);
 });

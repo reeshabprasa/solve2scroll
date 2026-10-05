@@ -1,5 +1,6 @@
 import {
   credit,
+  REWARD_MINUTES,
   initialState,
   registerSubmission,
   settle,
@@ -157,8 +158,7 @@ async function checkPending(id: string) {
         if (verdict === "accepted") credit(state, id, Date.now());
         else if (verdict === "rejected") {
           delete state.pending[id];
-          state.status =
-            "Submission was not Accepted. Keep going — your next solve earns 20 minutes.";
+          state.status = `Submission was not Accepted. Keep going — your next solve earns ${REWARD_MINUTES} minutes.`;
         } else if (p.attempts >= 12) {
           p.error =
             "Judge still pending. Retry verification when LeetCode has finished.";

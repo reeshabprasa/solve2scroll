@@ -16,8 +16,8 @@ After the protocol check, the built extension was loaded unpacked into Arc (Chro
 
 1. Load the release unpacked in Chrome and refresh LeetCode.
 2. With an empty pool, open Instagram and TikTok and confirm both redirect.
-3. Submit any solution and verify one Accepted result adds 20 minutes.
-4. Repeat the same problem and verify a second new submission adds another 20 minutes.
+3. Submit any solution and verify one Accepted result adds 10 minutes.
+4. Repeat the same problem and verify a second new submission adds another 10 minutes.
 5. Browse either social site, switch away, minimize, lock/unlock, and restart Chrome; confirm spending only while viewing social pages.
 6. At exhaustion, verify playback stops and both sites are blocked.
 7. Update from the same unpacked folder and confirm the pool remains saved.

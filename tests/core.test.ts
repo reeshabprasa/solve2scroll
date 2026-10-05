@@ -27,25 +27,27 @@ function observed(state = initialState(), id = "1000000001", at = 1000) {
   return state;
 }
 describe("reward ledger", () => {
-  it("starts locked and awards exactly 20 minutes for a tracked new acceptance", () => {
+  it("starts locked and awards exactly 10 minutes for a tracked new acceptance", () => {
     const s = observed();
     expect(s.balanceMs).toBe(0);
     expect(credit(s, "1000000001", 2000)).toBe(true);
-    expect(s.balanceMs).toBe(1200000);
+    expect(s.balanceMs).toBe(600000);
+    expect(s.history[0].rewardMs).toBe(600000);
+    expect(s.status).toBe("Accepted! 10 minutes added to your pool.");
   });
   it("deduplicates refreshes, duplicate callbacks and retries", () => {
     const s = observed();
     credit(s, "1000000001", 2000);
     observed(s);
     expect(credit(s, "1000000001", 3000)).toBe(false);
-    expect(s.balanceMs).toBe(1200000);
+    expect(s.balanceMs).toBe(600000);
   });
   it("allows new Accepted submissions for the same problem indefinitely", () => {
     const s = observed();
     credit(s, "1000000001", 2000);
     observed(s, "1000000002");
     credit(s, "1000000002", 4000);
-    expect(s.balanceMs).toBe(2400000);
+    expect(s.balanceMs).toBe(1200000);
     expect(s.history).toHaveLength(2);
   });
   it("refuses historical IDs and submissions without a matching fresh POST", () => {
@@ -72,7 +74,7 @@ describe("reward ledger", () => {
     credit(s, "1000000001", 2000);
     s = JSON.parse(JSON.stringify(s));
     expect(credit(s, "1000000001", 3000)).toBe(false);
-    expect(s.balanceMs).toBe(1200000);
+    expect(s.balanceMs).toBe(600000);
     for (let i = 2; i < 40; i++) {
       observed(s, String(i));
       credit(s, String(i), 4000);
@@ -101,7 +103,7 @@ describe("time accounting", () => {
   it("formats unlimited balances without day wrapping", () => {
     expect(formatTime(0)).toBe("0:00");
     expect(formatTime(1)).toBe("0:01");
-    expect(formatTime(1200000)).toBe("20:00");
+    expect(formatTime(600000)).toBe("10:00");
     expect(formatTime(36000000)).toBe("600:00");
   });
 });
