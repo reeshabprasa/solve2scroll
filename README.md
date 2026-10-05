@@ -2,7 +2,7 @@
 
 **Earn your doomscroll**
 
-A local-first Chrome extension that puts Instagram and TikTok behind a shared screentime pool. Every new accepted Leetcode submission earns **10 minutes**, including new submissions to problems you have already solved. Minutes accumulate without a cap or expiration.
+A local-first Chrome extension that puts Instagram and TikTok behind a shared screentime pool. Every new accepted Leetcode submission earns **10 minutes**, including new submissions to problems you have already solved (for spaced repetition). Minutes accumulate without a cap or expiration.
 
 ![The Solve2Scroll blocked page](docs/images/blocked.png)
 
