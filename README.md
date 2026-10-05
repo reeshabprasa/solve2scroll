@@ -2,7 +2,7 @@
 
 **Earn your doomscroll**
 
-A local-first Chrome extension that puts Instagram and TikTok behind a shared screentime pool. Every new accepted Leetcode submission earns **20 minutes**, including new submissions to problems you have already solved. Minutes accumulate without a cap or expiration.
+A local-first Chrome extension that puts Instagram and TikTok behind a shared screentime pool. Every new accepted Leetcode submission earns **10 minutes**, including new submissions to problems you have already solved. Minutes accumulate without a cap or expiration.
 
 ![The Solve2Scroll blocked page](docs/images/blocked.png)
 
@@ -25,7 +25,7 @@ Replace the files in the **same extracted folder**, then click **Reload** on the
 
 ## How time works
 
-- Every distinct, newly observed Accepted submission ID earns **1,200 seconds**. Submitting the same problem again with a new ID counts.
+- Every distinct, newly observed Accepted submission ID earns **10 minutes**. Submitting the same problem again with a new ID counts.
 - Test runs, Wrong Answer, historical Accepted pages, and refreshed result pages earn nothing.
 - Only the active social tab in the focused browser window spends time. Multiple social tabs do not multiply the rate.
 - Watching videos counts without typing or moving the mouse. Switching away, minimizing Chrome, locking your computer, or closing the browser pauses spending.
